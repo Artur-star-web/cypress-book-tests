@@ -3,33 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  
   "scripts": {
-    
-    "test": "cypress run",
-    "test:open": "cypress open",
-    
-    
-    "test:headless:desktop": "cypress run --browser chrome",
-    "test:headless:mobile": "cross-env CYPRESS_VIEWPORT_WIDTH=375 CYPRESS_VIEWPORT_HEIGHT=812 cypress run --browser chrome",
-    
-    
-    "test:headed:desktop": "cypress run --headed --browser chrome",
-    "test:headed:mobile": "cross-env CYPRESS_VIEWPORT_WIDTH=375 CYPRESS_VIEWPORT_HEIGHT=812 cypress run --headed --browser chrome",
-    
-    
-    "test:chrome": "cypress run --browser chrome",
-    "test:firefox": "cypress run --browser firefox",
-    "test:edge": "cypress run --browser edge",
-    "test:electron": "cypress run --browser electron",
-    
-    
-    "test:mobile:chrome": "cross-env CYPRESS_VIEWPORT_WIDTH=375 CYPRESS_VIEWPORT_HEIGHT=812 cypress run --browser chrome",
-    "test:mobile:firefox": "cross-env CYPRESS_VIEWPORT_WIDTH=375 CYPRESS_VIEWPORT_HEIGHT=812 cypress run --browser firefox",
-    
-    
-    "test:open:desktop": "cypress open",
-    "test:open:mobile": "cross-env CYPRESS_VIEWPORT_WIDTH=375 CYPRESS_VIEWPORT_HEIGHT=812 cypress open"
-  },
+    "test:headless:desktop": "cypress run --browser chrome --config-file cypress.config.js",
+    "test:headless:mobile": "cypress run --browser chrome --config-file cypress.mobile.config.js",
+    "test:headed:desktop": "cypress run --headed --browser chrome --config-file cypress.config.js", 
+    "test:headed:mobile": "cypress run --headed --browser chrome --config-file cypress.mobile.config.js"
+  
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

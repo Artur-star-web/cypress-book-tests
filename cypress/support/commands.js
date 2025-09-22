@@ -1,24 +1,27 @@
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('/');
-  
-  // Сначала находим и кликаем кнопку "Log in"
+
   cy.contains('Log in').click();
-  
-  // Ждем пока форма логина появится
-  cy.get('#mail', { timeout: 10000 }).should('be.visible').type(email);
+  cy.get('#mail').type(email);
   cy.get('#pass').type(password);
   cy.get('button[type="submit"]').click();
 });
 Cypress.Commands.add('addBookToFavorites', (bookTitle) => {
-  // Простой способ: ищем любую кнопку "Add to favorite" на странице
-  cy.get('button.btn-success').first().click();
+  // Находим книгу по точному названию и кликаем кнопку в её блоке
+  cy.contains('.card .card-title', bookTitle) // Ищем заголовок книги
+    .parents('.card') // Поднимаемся до карточки книги
+    .within(() => {
+      cy.get('button.btn-success').click(); // Кликаем кнопку внутри этой карточки
+    });
 });
 
 Cypress.Commands.add('removeBookFromFavorites', (bookTitle) => {
-  // Простой способ: ищем любую кнопку "Delete from favorite" на странице
-  cy.get('button.btn-secondary').first().click();
+  // Находим книгу по точному названию и кликаем кнопку в её блоке
+  cy.contains('.card .card-title', bookTitle) // Ищем заголовок книги
+    .parents('.card') // Поднимаемся до карточки книги
+    .within(() => {
+      cy.get('button.btn-secondary').click(); // Кликаем кнопку внутри этой карточки
+    });
 });
-
 Cypress.Commands.add('checkBookInFavorites', (bookTitle) => {
   
   cy.contains('Favorites').click();
